@@ -9,24 +9,18 @@
             scroll-behavior: smooth;
         }
 
-        /* запас сверху при скролле к якорю — подстраивай значение под высоту header */
+
         section {
             scroll-margin-top: 100px;
         }
 
-        /* если на мобильных header ниже, уменьшаем отступ */
+
         @media (max-width: 600px) {
             section {
                 scroll-margin-top: 70px;
             }
         }
 
-        /* если хочешь задать для конкретных секций точнее: */
-        /*
-        #projects, #skills, #contacts, #prices {
-          scroll-margin-top: 100px;
-        }
-        */
 
 
 
@@ -163,7 +157,7 @@
             }
         }
 
-        /* Плавное появление проектов */
+
         .project-card {
             opacity: 0;
             transform: translateY(20px);
@@ -226,11 +220,11 @@
 
             display: flex;
             gap: 10px;
-            flex-wrap: nowrap; /* не переносим на новую строку */
+            flex-wrap: wrap;
         }
 
         .skill-item.active .skill-content {
-            max-height: 500px; /* достаточно для картинок */
+            max-height: 1500px;
             opacity: 1;
         }
 
@@ -244,7 +238,7 @@
 
         .project-img {
             width: 100%;
-            height: auto; /* убрали фиксированную высоту */
+            height: auto;
             border-radius: 8px;
             object-fit: cover;
             margin: 10px 0;
@@ -282,6 +276,11 @@
             to { opacity: 1; }
         }
 
+        @media (max-width: 600px) {
+            .skill-img {
+                max-width: 100%;
+            }
+        }
 
     </style>
 </head>
