@@ -1,10 +1,246 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio — Roman</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg-color: #f4f4f9;
+            --text-color: #0f1115;
+            --header-bg: #ffffff;
+            --card-bg: #ffffff;
+            --accent-color: #4caf50;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f1115;
+            --text-color: #ffffff;
+            --header-bg: #14171d;
+            --card-bg: #1a1d24;
+            --accent-color: #4caf50;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        header {
+            padding: 40px 20px;
+            text-align: center;
+            background: var(--header-bg);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        header p {
+            opacity: 0;
+            margin-top: 10px;
+            animation: fadeIn 1s 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        .section-title {
+            font-size: 26px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
+        }
+
+        .skills, .projects, .contacts {
+            display: grid;
+            gap: 20px;
+        }
+
+        .skill-item, .project-card, .contact-item {
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-item:hover, .project-card:hover, .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .project-card h3 {
+            margin-top: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            opacity: 0.7;
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            padding: 5px 10px;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            background: none;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* Плавное появление проектов */
+        .project-card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.6s forwards;
+        }
+        .project-card:nth-child(1) { animation-delay: 0.2s; }
+        .project-card:nth-child(2) { animation-delay: 0.4s; }
+        .project-card:nth-child(3) { animation-delay: 0.6s; }
+        .project-card:nth-child(4) { animation-delay: 0.8s; }
+        .project-card:nth-child(5) { animation-delay: 1s; }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
-<body>
-$END$
+<body data-theme="dark">
+<header>
+    <h1>Roman — Front-End Developer</h1>
+    <p>HTML • CSS • JavaScript (начальный уровень)</p>
+    <nav>
+        <ul>
+            <li><a href="#about">Обо мне</a></li>
+            <li><a href="#skills">Навыки</a></li>
+            <li><a href="#projects">Проекты</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+        </ul>
+    </nav>
+    <button class="theme-toggle" onclick="toggleTheme()">Сменить тему</button>
+</header>
+
+<div class="container">
+    <section id="about">
+        <h2 class="section-title">Обо мне</h2>
+        <p>Закончил курс HTML,CSS,JS,React,TS, если вы не знаете с чего начать свой шаг в IT и какое направление выбрать, я помогу вам обрести базовые знания и понять как писать код, и что это не так страшно как выглядит, по окончанию курса вы сможите делать небольшие сайты, карточки, блоги, и понять для себя направление в котором вы хотите дальше двигаться</p>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Навыки</h2>
+        <div class="skills">
+            <div class="skill-item">HTML5 — семантика, структура, формы</div>
+            <div class="skill-item">CSS3 — Flexbox, адаптив, анимации</div>
+            <div class="skill-item">JavaScript — DOM, события (базовый уровень)</div>
+            <div class="skill-item">GitHub Pages — публикация сайтов</div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Проекты</h2>
+        <div class="projects">
+            <div class="project-card">
+                <h3>Landing Page</h3>
+                <p>Современная одностраничная вёрстка с адаптацией под мобильные устройства.</p>
+            </div>
+            <div class="project-card">
+                <h3>Сайт-визитка</h3>
+                <p>Мини-портфолио с разделами, структурой и простыми эффектами.</p>
+            </div>
+            <div class="project-card">
+                <h3>Мини-скрипты JS</h3>
+                <p>Бургер-меню, модальное окно, аккордеон — изучение DOM.</p>
+            </div>
+            <div class="project-card">
+                <h3>Блог на HTML/CSS</h3>
+                <p>Пример маленького блога с постами и базовой навигацией.</p>
+            </div>
+            <div class="project-card">
+                <h3>Карточки товаров</h3>
+                <p>Верстка карточек товаров с изображениями и hover-эффектами.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacts">
+        <h2 class="section-title">Контакты</h2>
+        <div class="contacts">
+            <div class="contact-item">Email: <a href="mailto:ozenenesis56@gmail.com">ozenenesis56@gmail.com</a></div>
+            <div class="contact-item">Telegram: <a href="https://t.me/Ozen25" target="_blank">@Ozen25</a></div>
+            <div class="contact-item">GitHub: <a href="https://github.com/yourgithub" target="_blank">https://github.com/Roman5658</a></div>
+        </div>
+    </section>
+</div>
+
+<footer>
+    © 2025 Roman. Все права защищены.
+</footer>
+
+<script>
+    function toggleTheme() {
+        const body = document.body;
+        if(body.getAttribute('data-theme') === 'dark') {
+            body.setAttribute('data-theme', 'light');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+        }
+    }
+</script>
 </body>
 </html>
