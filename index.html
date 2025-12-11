@@ -34,7 +34,7 @@
         }
 
         header {
-            padding: 40px 20px;
+            padding: 20px 10px;
             text-align: center;
             background: var(--header-bg);
             position: sticky;
@@ -202,20 +202,62 @@
             opacity: 0;
             margin-top: 10px;
 
-            display: flex;        /* Располагаем картинки в ряд */
-            gap: 10px;            /* Расстояние между картинками */
-            flex-wrap: wrap;      /* Чтобы переносились на новую строку, если мало места */
+            display: flex;
+            gap: 10px;
+            flex-wrap: nowrap; /* не переносим на новую строку */
         }
 
         .skill-item.active .skill-content {
-            max-height: 300px; /* или auto, но для анимации лучше фиксированное значение */
+            max-height: 500px; /* достаточно для картинок */
             opacity: 1;
         }
 
         .skill-img {
-            width: 48%;          /* Две картинки рядом примерно по половине ширины */
+            flex: 1 1 0;
+            max-width: 48%;
+            height: auto;
             border-radius: 8px;
-            object-fit: cover;   /* Чтобы картинки не искажались */
+            object-fit: contain;
+        }
+
+        .project-img {
+            width: 100%;
+            height: auto; /* убрали фиксированную высоту */
+            border-radius: 8px;
+            object-fit: cover;
+            margin: 10px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .project-title {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px 0;
+        }
+
+        .project-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+        }
+
+        .project-card.active .project-content {
+            max-height: 1000px; /* увеличили запас, чтобы влезли любые картинки */
+            opacity: 1;
+        }
+        .project-card.active .project-img {
+            animation: fadeInImage 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInImage {
+            to { opacity: 1; }
         }
 
 
@@ -224,7 +266,7 @@
 <body data-theme="dark">
 <header>
     <h1>Roman — Front-End Developer</h1>
-    <p>HTML • CSS • JavaScript (начальный уровень)</p>
+    <p>HTML • CSS • JavaScript • TypeScript • React </p>
     <nav>
         <button class="burger" onclick="toggleMenu()">☰</button>
         <ul class="nav-links">
@@ -240,7 +282,7 @@
 <div class="container">
     <section id="about">
         <h2 class="section-title">Обо мне</h2>
-        <p>Я специализируюсь на Front-End разработке: HTML5, CSS3 и JavaScript. Имею практический опыт создания адаптивных и интерактивных веб-сайтов, а также публикации проектов на GitHub Pages. В рамках курса вы получите системное понимание веб-разработки, научитесь создавать собственные проекты, от лендингов до мини-приложений на JavaScript, и получите уверенность в дальнейшем освоении IT-направлений. Моя цель — дать вам базу, которая позволит быстро и эффективно двигаться в веб-разработке.</p>
+        <p>Я специализируюсь на Front-End разработке: HTML5, CSS3 и JavaScript. Имею практический опыт создания адаптивных и интерактивных веб-сайтов, а также публикации проектов на GitHub Pages. В рамках курса вы получите системное понимание веб-разработки, научитесь создавать собственные проекты, от лендингов до страниц на JavaScript, и получите уверенность в дальнейшем освоении IT-направлений. Моя цель — дать вам базу, которая позволит быстро и эффективно двигаться в веб-разработке.</p>
 
     </section>
 
@@ -263,12 +305,16 @@
             </div>
 
             <div class="skill-item">
-                <div class="skill-title" onclick="toggleSkill(this)">JavaScript — DOM, события (базовый уровень)</div>
+                <div class="skill-title" onclick="toggleSkill(this)">
+                    JavaScript — DOM, события (базовый уровень)
+                </div>
                 <div class="skill-content">
                     <img src="images/js.png" alt="JavaScript" class="skill-img">
                     <img src="images/js1.png" alt="JavaScript" class="skill-img">
                 </div>
             </div>
+
+
 
 
             <div class="skill-item">
@@ -283,29 +329,51 @@
 
     <section id="projects">
         <h2 class="section-title">Проекты</h2>
+
         <div class="projects">
             <div class="project-card">
-                <h3>Landing Page</h3>
-                <p>Современная одностраничная вёрстка с адаптацией под мобильные устройства.</p>
+                <div class="project-title" onclick="toggleProject(this)">Landing Page</div>
+                <div class="project-content">
+                    <img src="images/project-lending.png" alt="Landing Page" class="project-img">
+                    <p>Современная одностраничная вёрстка с адаптацией под мобильные устройства.</p>
+                </div>
             </div>
+
             <div class="project-card">
-                <h3>Сайт-визитка</h3>
-                <p>Мини-портфолио с разделами, структурой и простыми эффектами.</p>
+                <div class="project-title" onclick="toggleProject(this)">Сайт-визитка</div>
+                <div class="project-content">
+                    <img src="images/project-portfolio.png" alt="Сайт-визитка" class="project-img">
+                    <p>Мини-портфолио с разделами, структурой и простыми эффектами.</p>
+                </div>
             </div>
+
             <div class="project-card">
-                <h3>Мини-скрипты JS</h3>
-                <p>Бургер-меню, модальное окно, аккордеон — изучение DOM.</p>
+                <div class="project-title" onclick="toggleProject(this)">Мини-скрипты JS</div>
+                <div class="project-content">
+                    <img src="images/project-js.png" alt="Мини-скрипты JS" class="project-img">
+                    <p>Бургер-меню, модальное окно, аккордеон — изучение DOM.</p>
+                </div>
             </div>
+
             <div class="project-card">
-                <h3>Блог на HTML/CSS</h3>
-                <p>Пример маленького блога с постами и базовой навигацией.</p>
+                <div class="project-title" onclick="toggleProject(this)">Блог на HTML/CSS</div>
+                <div class="project-content">
+                    <img src="images/project-blog.png" alt="Блог" class="project-img">
+                    <p>Пример маленького блога с постами и базовой навигацией.</p>
+                </div>
             </div>
+
             <div class="project-card">
-                <h3>Карточки товаров</h3>
-                <p>Верстка карточек товаров с изображениями и hover-эффектами.</p>
+                <div class="project-title" onclick="toggleProject(this)">Карточки товаров</div>
+                <div class="project-content">
+                    <img src="images/project-cards.png" alt="Карточки товаров" class="project-img">
+                    <p>Верстка карточек товаров с изображениями и hover-эффектами.</p>
+                </div>
             </div>
         </div>
     </section>
+
+
 
     <section id="contacts">
         <h2 class="section-title">Контакты</h2>
@@ -313,6 +381,8 @@
             <div class="contact-item">Email: <a href="mailto:ozenenesis56@gmail.com">ozenenesis56@gmail.com</a></div>
             <div class="contact-item">Telegram: <a href="https://t.me/Ozen25" target="_blank">@Ozen25</a></div>
             <div class="contact-item">GitHub: <a href="https://github.com/yourgithub" target="_blank">https://github.com/Roman5658</a></div>
+            <div class="contact-item">WhatsApp: <a href="https://wa.me/48694627689" target="_blank">+48 694 627 689</a></div>
+            <div class="contact-item">Facebook: <a href="https://www.facebook.com/share/1FcVm13eXF/?mibextid=wwXIfr" target="_blank">Моя страница</a></div>
         </div>
     </section>
 </div>
@@ -341,6 +411,12 @@
     function toggleSkill(element) {
         element.parentElement.classList.toggle('active');
     }
+</script>
+<script>
+    function toggleProject(element) {
+        element.parentElement.classList.toggle('active');
+    }
+
 </script>
 </body>
 </html>
