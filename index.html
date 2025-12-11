@@ -467,27 +467,26 @@
 </script>
 
 <script>
-    // Правильный якорный скролл с учётом фиксированного header
+    // Правильный якорный скролл
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
 
             const id = this.getAttribute('href').substring(1);
             const target = document.getElementById(id);
-            const header = document.querySelector('header');
 
-            if (!target || !header) return;
+            if (!target) return;
 
-            const headerHeight = header.offsetHeight;
             const targetPos = target.getBoundingClientRect().top + window.pageYOffset;
 
             window.scrollTo({
-                top: targetPos - headerHeight,   // точное положение
+                top: targetPos,
                 behavior: 'smooth'
             });
         });
     });
 </script>
+
 
 </body>
 </html>
