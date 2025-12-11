@@ -466,25 +466,28 @@
 </script>
 
 <script>
-    // Правильный якорный скролл
+
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
 
             const id = this.getAttribute('href').substring(1);
             const target = document.getElementById(id);
+            const header = document.querySelector('header');
 
-            if (!target) return;
+            if (!target || !header) return;
 
+            const headerHeight = header.offsetHeight;
             const targetPos = target.getBoundingClientRect().top + window.pageYOffset;
 
             window.scrollTo({
-                top: targetPos,
+                top: targetPos - headerHeight,   // точное положение
                 behavior: 'smooth'
             });
         });
     });
 </script>
+
 
 
 </body>
