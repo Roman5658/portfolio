@@ -159,6 +159,66 @@
                 transform: translateY(0);
             }
         }
+        .burger {
+            display: none;
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .burger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+
+
+        .skill-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+            margin-top: 10px;
+
+            display: flex;        /* Располагаем картинки в ряд */
+            gap: 10px;            /* Расстояние между картинками */
+            flex-wrap: wrap;      /* Чтобы переносились на новую строку, если мало места */
+        }
+
+        .skill-item.active .skill-content {
+            max-height: 300px; /* или auto, но для анимации лучше фиксированное значение */
+            opacity: 1;
+        }
+
+        .skill-img {
+            width: 48%;          /* Две картинки рядом примерно по половине ширины */
+            border-radius: 8px;
+            object-fit: cover;   /* Чтобы картинки не искажались */
+        }
+
+
     </style>
 </head>
 <body data-theme="dark">
@@ -166,7 +226,8 @@
     <h1>Roman — Front-End Developer</h1>
     <p>HTML • CSS • JavaScript (начальный уровень)</p>
     <nav>
-        <ul>
+        <button class="burger" onclick="toggleMenu()">☰</button>
+        <ul class="nav-links">
             <li><a href="#about">Обо мне</a></li>
             <li><a href="#skills">Навыки</a></li>
             <li><a href="#projects">Проекты</a></li>
@@ -179,16 +240,44 @@
 <div class="container">
     <section id="about">
         <h2 class="section-title">Обо мне</h2>
-        <p>Закончил курс HTML,CSS,JS,React,TS, если вы не знаете с чего начать свой шаг в IT и какое направление выбрать, я помогу вам обрести базовые знания и понять как писать код, и что это не так страшно как выглядит, по окончанию курса вы сможите делать небольшие сайты, карточки, блоги, и понять для себя направление в котором вы хотите дальше двигаться</p>
+        <p>Я специализируюсь на Front-End разработке: HTML5, CSS3 и JavaScript. Имею практический опыт создания адаптивных и интерактивных веб-сайтов, а также публикации проектов на GitHub Pages. В рамках курса вы получите системное понимание веб-разработки, научитесь создавать собственные проекты, от лендингов до мини-приложений на JavaScript, и получите уверенность в дальнейшем освоении IT-направлений. Моя цель — дать вам базу, которая позволит быстро и эффективно двигаться в веб-разработке.</p>
+
     </section>
 
     <section id="skills">
         <h2 class="section-title">Навыки</h2>
         <div class="skills">
-            <div class="skill-item">HTML5 — семантика, структура, формы</div>
-            <div class="skill-item">CSS3 — Flexbox, адаптив, анимации</div>
-            <div class="skill-item">JavaScript — DOM, события (базовый уровень)</div>
-            <div class="skill-item">GitHub Pages — публикация сайтов</div>
+
+            <div class="skill-item">
+                <div class="skill-title" onclick="toggleSkill(this)">HTML5 — семантика, структура, формы</div>
+                <div class="skill-content">
+                    <img src="images/html5.jpg" alt="HTML5" style="width:100%; border-radius:8px;">
+                </div>
+            </div>
+
+            <div class="skill-item">
+                <div class="skill-title" onclick="toggleSkill(this)">CSS3 — Flexbox, адаптив, анимации</div>
+                <div class="skill-content">
+                    <img src="images/css3.png" alt="CSS3" style="width:100%; border-radius:8px;">
+                </div>
+            </div>
+
+            <div class="skill-item">
+                <div class="skill-title" onclick="toggleSkill(this)">JavaScript — DOM, события (базовый уровень)</div>
+                <div class="skill-content">
+                    <img src="images/js.png" alt="JavaScript" class="skill-img">
+                    <img src="images/js1.png" alt="JavaScript" class="skill-img">
+                </div>
+            </div>
+
+
+            <div class="skill-item">
+                <div class="skill-title" onclick="toggleSkill(this)">GitHub Pages — публикация сайтов</div>
+                <div class="skill-content">
+                    <img src="images/github.png" alt="GitHub Pages" style="width:100%; border-radius:8px;">
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -240,6 +329,17 @@
         } else {
             body.setAttribute('data-theme', 'dark');
         }
+    }
+</script>
+<script>
+    function toggleMenu() {
+        document.querySelector('.nav-links').classList.toggle('active');
+    }
+
+</script>
+<script>
+    function toggleSkill(element) {
+        element.parentElement.classList.toggle('active');
     }
 </script>
 </body>
