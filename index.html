@@ -31,6 +31,8 @@
             --header-bg: #ffffff;
             --card-bg: #ffffff;
             --accent-color: #4caf50;
+            --toggle-grad-start: black;
+            --toggle-grad-end: white;
         }
 
         [data-theme="dark"] {
@@ -39,7 +41,13 @@
             --header-bg: #14171d;
             --card-bg: #1a1d24;
             --accent-color: #4caf50;
+            --toggle-grad-start: white;
+            --toggle-grad-end: black;
         }
+     [data-theme="light"] .result-info{
+         color: black;
+         text-shadow: 10px 10px 20px rgba(0, 0, 0, 1);
+     }
 
         body {
             margin: 0;
@@ -144,11 +152,26 @@
             padding: 5px 10px;
             border: 1px solid var(--accent-color);
             border-radius: 4px;
-            background: none;
             color: var(--accent-color);
             font-weight: bold;
             margin-top: 10px;
+
+            background: linear-gradient(
+                    to right,
+                    var(--toggle-grad-start),
+                    var(--toggle-grad-end)
+            );
+
+            transition: background 3.5s ease-in-out,
+            border-color 1.5s ease-in-out,
+            color 1.5s ease-in-out;
         }
+
+
+
+
+
+
 
         @media (max-width: 600px) {
             nav ul {
@@ -281,7 +304,10 @@
                 max-width: 100%;
             }
         }
-
+.result-info{
+    color: greenyellow;
+    text-shadow: 10px 10px 10px rgb(246, 242, 242);
+}
     </style>
 </head>
 <body data-theme="dark">
@@ -414,7 +440,7 @@
                 Формат: практические занятия + разбор домашних работ + сопровождение
                 1 день занятие, второй день домашнее задание
             </div>
-
+            <p class="result-info">После успешного завершения курса, вы сможите создавать одностраничные сайты, либо даже 2 или 3 страничные, блоги, лендинги, визитки, карточки, разворачивать их на github pages или vercel</p>
         </div>
     </section>
 
