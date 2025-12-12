@@ -1,6 +1,6 @@
 function toggleTheme() {
     const body = document.body;
-    if(body.getAttribute('data-theme') === 'dark') {
+    if (body.getAttribute('data-theme') === 'dark') {
         body.setAttribute('data-theme', 'light');
     } else {
         body.setAttribute('data-theme', 'dark');
@@ -16,12 +16,15 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 function toggleMenu() {
     document.querySelector('.nav-links').classList.toggle('active');
 }
+
 function toggleSkill(element) {
     element.parentElement.classList.toggle('active');
 }
+
 function toggleProject(element) {
     element.parentElement.classList.toggle('active');
 }
+
 document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', function (e) {
         e.preventDefault();
