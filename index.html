@@ -450,7 +450,10 @@
         <div class="contacts">
             <div class="contact-item">Email: <a href="mailto:ozenenesis56@gmail.com">ozenenesis56@gmail.com</a></div>
             <div class="contact-item">Telegram: <a href="https://t.me/Ozen25" target="_blank">@Ozen25</a></div>
-            <div class="contact-item">GitHub: <a href="https://github.com/yourgithub" target="_blank">https://github.com/Roman5658</a></div>
+            <div class="contact-item">
+                GitHub: <a href="https://github.com/Roman5658" target="_blank">github.com/Roman5658</a>
+            </div>
+
             <div class="contact-item">WhatsApp: <a href="https://wa.me/48694627689" target="_blank">+48 694 627 689</a></div>
             <div class="contact-item">Facebook: <a href="https://www.facebook.com/share/1FcVm13eXF/?mibextid=wwXIfr" target="_blank">Моя страница</a></div>
         </div>
@@ -464,6 +467,7 @@
 </footer>
 
 <script>
+
     function toggleTheme() {
         const body = document.body;
         if(body.getAttribute('data-theme') === 'dark') {
@@ -473,6 +477,15 @@
         }
     }
 </script>
+<script>
+    // Закрытие меню после клика по ссылке
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.remove('active');
+        });
+    });
+</script>
+
 <script>
     function toggleMenu() {
         document.querySelector('.nav-links').classList.toggle('active');
