@@ -315,3 +315,7 @@ footer {
     color: greenyellow;
     text-shadow: 10px 10px 10px rgb(246, 242, 242);
 }
+
+.seo-text{
+    text-shadow: 10px 10px 15px rgba(234, 233, 233, 0.99);
+}
