@@ -52,7 +52,6 @@ header {
     text-align: center;
     background: var(--header-bg);
 
-    top: 0;
     z-index: 1000;
 }
 
